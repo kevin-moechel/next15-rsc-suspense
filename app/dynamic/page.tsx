@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { headers } from "next/headers";
 import { Navigation } from "../components/Navigation";
 
 async function sleep(ms: number) {
@@ -6,15 +7,19 @@ async function sleep(ms: number) {
 }
 
 async function DelayedContent() {
+  const headersList = await headers();
+  const randomString = headersList.get('x-forwarded-for');
   await sleep(3000);
   return (
-    <p className="max-w-md text-lg leading-8 text-zinc-400">
+    <p className="max-w-lg text-lg leading-8 text-zinc-400">
       This content was delayed by 3 seconds.
+      X-Forwarded-For: {randomString}
     </p>
   );
 }
 
 export default function DynamicPage() {
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-black font-sans">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-32 px-16 bg-black sm:items-start">
