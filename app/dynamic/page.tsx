@@ -13,7 +13,6 @@ async function DelayedContent() {
   return (
     <p className="max-w-lg text-lg leading-8 text-zinc-400">
       This content was delayed by 3 seconds.
-      X-Forwarded-For: {randomString}
     </p>
   );
 }
